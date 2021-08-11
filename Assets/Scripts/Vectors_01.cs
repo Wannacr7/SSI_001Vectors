@@ -136,9 +136,10 @@ public class Vectors_01
         Vectors_01 midVector;
         Vectors_01 subsVector;
 
-        subsVector = firstVector.Substraction2(another);
+        //subsVector = firstVector.Substraction2(another);
+        subsVector = another.Substraction2(firstVector);
         midVector = subsVector.ScalarMultiply2(scalar);
-        lerpVector = another.Addition2(midVector);
+        lerpVector = firstVector.Addition2(midVector);
 
         return lerpVector;
     }

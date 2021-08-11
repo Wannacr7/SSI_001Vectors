@@ -85,7 +85,7 @@ public class TestScript : MonoBehaviour
         sumVector.DrawVector(Color.blue);*/
 
         
-        Vectors_01 lerpTest= test.Lerp(test2, 0.5f);
+        Vectors_01 lerpTest= test.Lerp(test2, scalar);
         lerpTest.DrawVector(Color.yellow);
     }
 }
