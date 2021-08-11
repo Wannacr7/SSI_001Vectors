@@ -126,6 +126,22 @@ public class Vectors_01
         Vector3 initialDraw = new Vector3(another.compX, another.compY);
         Debug.DrawLine(initialDraw, finalDraw, _color);
     }
+    public Vectors_01 Lerp(Vectors_01 another, float scalar)
+    {
+        Vectors_01 firstVector = new Vectors_01();
+        firstVector.compX = compX;
+        firstVector.compY = compY;
+
+        Vectors_01 lerpVector;
+        Vectors_01 midVector;
+        Vectors_01 subsVector;
+
+        subsVector = firstVector.Substraction2(another);
+        midVector = subsVector.ScalarMultiply2(scalar);
+        lerpVector = another.Addition2(midVector);
+
+        return lerpVector;
+    }
 
 
 

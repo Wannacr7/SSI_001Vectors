@@ -72,7 +72,7 @@ public class TestScript : MonoBehaviour
 
 
 
-        SubsVector = test2.Substraction2(test);
+        /*SubsVector = test2.Substraction2(test);
         midVector = SubsVector.ScalarMultiply2(scalar);
 
         SubsVector.DrawVector(Color.yellow);
@@ -82,7 +82,10 @@ public class TestScript : MonoBehaviour
 
         sumVector = test.Addition2(midVector);
 
-        sumVector.DrawVector(Color.blue);
+        sumVector.DrawVector(Color.blue);*/
+
         
+        Vectors_01 lerpTest= test.Lerp(test2, 0.5f);
+        lerpTest.DrawVector(Color.yellow);
     }
 }
