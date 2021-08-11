@@ -128,18 +128,20 @@ public class Vectors_01
     }
     public Vectors_01 Lerp(Vectors_01 another, float scalar)
     {
-        Vectors_01 firstVector = new Vectors_01();
+        /*Vectors_01 firstVector = new Vectors_01();
         firstVector.compX = compX;
-        firstVector.compY = compY;
+        firstVector.compY = compY;*/
 
         Vectors_01 lerpVector;
         Vectors_01 midVector;
         Vectors_01 subsVector;
 
         //subsVector = firstVector.Substraction2(another);
-        subsVector = another.Substraction2(firstVector);
+        subsVector = another.Substraction2(this);
         midVector = subsVector.ScalarMultiply2(scalar);
-        lerpVector = firstVector.Addition2(midVector);
+        lerpVector = Addition2(midVector);
+
+        
 
         return lerpVector;
     }
