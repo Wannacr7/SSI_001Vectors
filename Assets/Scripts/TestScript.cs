@@ -14,6 +14,9 @@ public class TestScript : MonoBehaviour
     [SerializeField] public Vectors_01 test3 = new Vectors_01(1f, 1f);
     [SerializeField] Vectors_01 test4 = new Vectors_01(0f, 0f);
 
+    [SerializeField][Range(0,1)]float scalar = 0.5f;
+
+
     Vectors_01 SubsVector = new Vectors_01();
     Vectors_01 midVector = new Vectors_01();
     Vectors_01 sumVector = new Vectors_01();
@@ -70,7 +73,7 @@ public class TestScript : MonoBehaviour
 
 
         SubsVector = test2.Substraction2(test);
-        midVector = SubsVector.ScalarMultiply2(0.5f);
+        midVector = SubsVector.ScalarMultiply2(scalar);
 
         SubsVector.DrawVector(Color.yellow);
         SubsVector.DrawVector(test,Color.yellow);
