@@ -155,4 +155,9 @@ public class Vectors_01
     {
         return ("(" + compX.ToString() + "  " + compY.ToString() + ")");
     }
+
+    public static implicit operator Vector3(Vectors_01 v)
+    {
+         return new Vector2(v.compX,v.compY);
+    }
 }

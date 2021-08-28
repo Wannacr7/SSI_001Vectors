@@ -71,7 +71,7 @@ public class TestScript : MonoBehaviour
         //test2.DrawVector(test, Color.yellow);
 
 
-
+        
         /*SubsVector = test2.Substraction2(test);
         midVector = SubsVector.ScalarMultiply2(scalar);
 
@@ -84,7 +84,7 @@ public class TestScript : MonoBehaviour
 
         sumVector.DrawVector(Color.blue);*/
 
-        
+
         Vectors_01 lerpTest= test.Lerp(test2, scalar);
         lerpTest.DrawVector(Color.yellow);
     }
