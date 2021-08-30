@@ -28,11 +28,12 @@ public class Walker : MonoBehaviour
         if (Automatic)
         {
             firstPosition = new Vectors_01(target.transform.position.x, target.transform.position.y);
-            firstPosition.DrawVector();
+            firstPosition.DrawVector(Color.blue);
 
             sum = firstPosition.Substraction2(velocity);
 
             velocity.DrawVector(firstPosition, Color.red);
+            Aceleration.DrawVector(firstPosition, Color.yellow);
 
             target.transform.position = target.transform.position + velocity.ScalarMultiply2(Time.deltaTime);
             velocity.Addition(Aceleration.ScalarMultiply2(Time.deltaTime));
@@ -51,28 +52,28 @@ public class Walker : MonoBehaviour
         {
             
             velocity.compX *= -1f ;
-            Aceleration.compX *= -1f;
-            target.transform.position = new Vector3(4.5f,0);
+            //Aceleration.compX *= -1f;
+            target.transform.position = new Vector3(4.5f, target.transform.position.y);
         }
         else if (target.transform.position.x  <= -4.5f)
         {
             velocity.compX *= -1f ;
-            Aceleration.compX *= -1f;
-            target.transform.position = new Vector3(-4.5f, 0);
+            //Aceleration.compX *= -1f;
+            target.transform.position = new Vector3(-4.5f, target.transform.position.y);
         }
-        else if (target.transform.position.y >= 4.5f)
+        if (target.transform.position.y >= 4.5f)
         {
             velocity.compY *= -1f ;
-            Aceleration.compY *= -1f;
-            target.transform.position = new Vector3(0, 4.5f);
+            //Aceleration.compY *= -1f;
+            target.transform.position = new Vector3(target.transform.position.x, 4.5f);
         }
         else if (target.transform.position.y <= -4.5f)
         {
-            velocity.compY *= -1f ;
-            Aceleration.compY *= -1f;
-            target.transform.position = new Vector3(0, -4.5f);
+            velocity.compY *= -1f;
+            //Aceleration.compY *= -1f;
+            target.transform.position = new Vector3(target.transform.position.x, -4.5f);
         }
-        
+
         Debug.Log("Update position");
     }
 
