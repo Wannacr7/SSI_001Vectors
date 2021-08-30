@@ -13,7 +13,7 @@ public class Walker : MonoBehaviour
     Vectors_01 tool = new Vectors_01();
 
     [SerializeField]GameObject target;
-    [SerializeField] int seed;
+    [SerializeField] float maxSpeed;
     [SerializeField] bool Automatic = false;
     // Start is called before the first frame update
     void Start()
@@ -25,18 +25,23 @@ public class Walker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        firstPosition = new Vectors_01(target.transform.position.x, target.transform.position.y);
-        firstPosition.DrawVector();
+        if (Automatic)
+        {
+            firstPosition = new Vectors_01(target.transform.position.x, target.transform.position.y);
+            firstPosition.DrawVector();
 
-        sum = firstPosition.Substraction2(velocity);
+            sum = firstPosition.Substraction2(velocity);
 
-        velocity.DrawVector(firstPosition,Color.red);
+            velocity.DrawVector(firstPosition, Color.red);
 
-        target.transform.position = target.transform.position + velocity.ScalarMultiply2(Time.deltaTime);
-        velocity.Addition(Aceleration.ScalarMultiply2(Time.deltaTime));
+            target.transform.position = target.transform.position + velocity.ScalarMultiply2(Time.deltaTime);
+            velocity.Addition(Aceleration.ScalarMultiply2(Time.deltaTime));
 
 
-        UpdatePosition();
+            UpdatePosition();
+            CheckSpeed();
+        }
+        
     }
     public void UpdatePosition()
     {
@@ -69,5 +74,14 @@ public class Walker : MonoBehaviour
         }
         
         Debug.Log("Update position");
+    }
+
+    private void CheckSpeed()
+    {
+        if (velocity.Module() > maxSpeed)
+        {
+            velocity.Normalize();
+            velocity.ScalarMultiply(maxSpeed);
+        }
     }
 }
