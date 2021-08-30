@@ -157,8 +157,11 @@ MonoBehaviour:
     compX: 0
     compY: 0
   velocity:
-    compX: 88.46
-    compY: -81.17
+    compX: 1
+    compY: 0
+  Aceleration:
+    compX: 0
+    compY: 0
   target: {fileID: 955141374}
   seed: 0
   Automatic: 1
