@@ -158,12 +158,12 @@ MonoBehaviour:
     compY: 0
   velocity:
     compX: 1
-    compY: 0
+    compY: 1
   Aceleration:
     compX: 0
     compY: 0
-  target: {fileID: 955141374}
-  seed: 0
+  target: {fileID: 955141371}
+  maxSpeed: 20
   Automatic: 1
 --- !u!212 &955141373
 SpriteRenderer:
