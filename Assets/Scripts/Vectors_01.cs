@@ -9,16 +9,16 @@ using UnityEngine;
 
 [Serializable]
 
-public class Vectors_01 
+public class Vectors_01
 {
 
     public float compX, compY;
 
     public Vectors_01()
     {
-       
+
     }
-    public Vectors_01(float x,float y)
+    public Vectors_01(float x, float y)
     {
         compX = x;
         compY = y;
@@ -27,7 +27,7 @@ public class Vectors_01
 
     public void Addition(Vectors_01 another)
     {
-        
+
         compX += another.compX;
         compY += another.compY;
 
@@ -83,14 +83,14 @@ public class Vectors_01
 
     public float Module()
     {
-        float mod = (float)Math.Sqrt(Math.Pow(compX,2)+ Math.Pow(compY,2));
+        float mod = (float)Math.Sqrt(Math.Pow(compX, 2) + Math.Pow(compY, 2));
         return mod;
     }
 
     public void Normalize()
     {
         float _mod = Module();
-        if(_mod != 0)
+        if (_mod != 0)
         {
             compX /= _mod;
             compY /= _mod;
@@ -100,11 +100,11 @@ public class Vectors_01
             compX = 0;
             compY = 0;
         }
-       
+
     }
 
 
-    public  void DrawVector()
+    public void DrawVector()
     {
         Vector3 finalDraw = new Vector3(compX, compY, 0);
         Debug.DrawLine(Vector3.zero, finalDraw, Color.cyan);
@@ -116,8 +116,8 @@ public class Vectors_01
     }
     public void DrawVector(Vectors_01 another)
     {
-        Vector3 finalDraw = new Vector3(compX+another.compX, compY+another.compY);
-        Vector3 initialDraw = new Vector3(another.compX,another.compY);
+        Vector3 finalDraw = new Vector3(compX + another.compX, compY + another.compY);
+        Vector3 initialDraw = new Vector3(another.compX, another.compY);
         Debug.DrawLine(initialDraw, finalDraw, Color.red);
     }
     public void DrawVector(Vectors_01 another, Color _color)
@@ -141,7 +141,7 @@ public class Vectors_01
         midVector = subsVector.ScalarMultiply2(scalar);
         lerpVector = Addition2(midVector);
 
-        
+
 
         return lerpVector;
     }
@@ -158,7 +158,7 @@ public class Vectors_01
 
     public static implicit operator Vector3(Vectors_01 v)
     {
-         return new Vector2(v.compX,v.compY);
+        return new Vector2(v.compX, v.compY);
     }
-    
+
 }
