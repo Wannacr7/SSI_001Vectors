@@ -102,6 +102,21 @@ public class Vectors_01
         }
 
     }
+    public Vectors_01 Normalize2()
+    {
+        
+        float _mod = Module();
+        if (_mod != 0)
+        {
+
+            return new Vectors_01(compX / _mod, compY / _mod);
+        }
+        else
+        {
+            return new Vectors_01(0, 0);
+        }
+
+    }
 
 
     public void DrawVector()
@@ -159,6 +174,22 @@ public class Vectors_01
     public static implicit operator Vector3(Vectors_01 v)
     {
         return new Vector2(v.compX, v.compY);
+    }
+    public static Vectors_01 operator +(Vectors_01 a, Vectors_01 b)
+    {
+        return a.Addition2(b);
+    }
+    public static Vectors_01 operator -(Vectors_01 a)
+    {
+        return new Vectors_01(-a.compX, -a.compY);
+    }
+    public static Vectors_01 operator *( float scalar,Vectors_01 a)
+    {
+        return a.ScalarMultiply2(scalar);
+    }
+    public static Vectors_01 operator *( Vectors_01 a, Vectors_01 b)
+    {
+        return new Vectors_01(a.compX * b.compX, a.compY * b.compY);
     }
 
 }

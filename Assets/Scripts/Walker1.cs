@@ -23,6 +23,8 @@ public class Walker1 : MonoBehaviour
     [SerializeField] float maxSpeed;
     [SerializeField] [Range(0f, 1f)] float ran;
     [SerializeField] float mass;
+    [SerializeField] float gravity;
+    [SerializeField] float coeFricction;
 
     [SerializeField] bool Automatic = false;
     [SerializeField] bool noBorders = false;
@@ -44,8 +46,12 @@ public class Walker1 : MonoBehaviour
         {
             Forces.compX = 0;
             Forces.compY = 0;
-            AddForce(Force);
+            //AddForce(Force);
             AddForce(Force2);
+            AddForce(GravityForce(gravity).ScalarMultiply2(mass));
+            AddForce(Friction(coeFricction));
+            
+            
             
 
 
@@ -133,10 +139,23 @@ public class Walker1 : MonoBehaviour
     }
     private bool AddForce(Vectors_01 _force)
     {
-       
+
         Forces.compX += _force.compX;
         Forces.compY += _force.compY;
+
         return true;
+    }
+
+    private Vectors_01 GravityForce(float gravForce)
+    {
+        return new Vectors_01(0, gravForce);
+    }
+
+    private Vectors_01 Friction(float _coef)
+    {
+        Vectors_01 frictionVector = -_coef * 4 * velocity.Normalize2();
+        Debug.Log(frictionVector);
+        return frictionVector;
     }
     private void SetVectorInto(Vectors_01 a, Vector3 b)
     {
