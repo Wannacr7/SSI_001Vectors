@@ -7,6 +7,7 @@ public class Walker1 : MonoBehaviour
 
     [SerializeField] bool Automatic = false;
     [SerializeField] bool noBorders = false;
+    [SerializeField] bool simulatedGravity;
 
     #region Fisica
     [SerializeField] private Vectors_01 _Position;
@@ -32,6 +33,7 @@ public class Walker1 : MonoBehaviour
     [SerializeField] float gravity;
     [SerializeField][Range(0,1)] float coeFricction;
     [SerializeField] [Range(0, 1)] float dragCoef;
+    [SerializeField] [Range(0, 1)] float bouncing;
 
     [SerializeField] GameObject target;
     [SerializeField] GameObject worldTarget;
@@ -61,15 +63,6 @@ public class Walker1 : MonoBehaviour
             AddForce(SetFriction(coeFricction));
             if(target.transform.position.y <= fluidVector.compY + 5) AddForce(SetResistance(dragCoef));
      
-
-
-
-
-
-
-
-
-
 
             //Forces = AddForce(Force).Addition2(AddForce(Force2));
             _Position = new Vectors_01(target.transform.position.x, target.transform.position.y);
@@ -132,7 +125,7 @@ public class Walker1 : MonoBehaviour
             {
                 _Velocity.compY = -_Velocity.compY;
 
-                _Velocity.compY *= -1f;
+                _Velocity.compY *= bouncing;
 
                 //Aceleration.compY *= -1f;
                 
