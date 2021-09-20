@@ -12,6 +12,7 @@ public class Walker1 : MonoBehaviour
     [SerializeField] Vectors_01 Force;
     [SerializeField] Vectors_01 Force2;
     [SerializeField] Vectors_01 Forces;
+    private Vectors_01 fluidVector;
 
     Vectors_01 sum;
     Vectors_01 rest;
@@ -19,23 +20,26 @@ public class Walker1 : MonoBehaviour
 
     [SerializeField]GameObject target;
     [SerializeField] GameObject worldTarget;
+    [SerializeField] GameObject fluid;
 
     [SerializeField] float maxSpeed;
     [SerializeField] [Range(0f, 1f)] float ran;
     [SerializeField] float mass;
     [SerializeField] float gravity;
-    [SerializeField] float coeFricction;
+    [SerializeField][Range(0,1)] float coeFricction;
+    [SerializeField] [Range(0, 1)] float dragCoef;
 
     [SerializeField] bool Automatic = false;
     [SerializeField] bool noBorders = false;
-
-
     
+
+
+
     // Start is called before the first frame update
     void Start()
     {
         //target.transform.position = new Vector2(0f, 0f);
-
+        fluidVector = new Vectors_01(fluid.transform.position.x, fluid.transform.position.y);
        
     }
 
@@ -49,10 +53,16 @@ public class Walker1 : MonoBehaviour
             //AddForce(Force);
             AddForce(Force2);
             AddForce(GravityForce(gravity).ScalarMultiply2(mass));
-            AddForce(Friction(coeFricction));
-            
-            
-            
+            AddForce(SetFriction(coeFricction));
+            if(target.transform.position.y <= fluidVector.compY + 5)
+            {
+                
+                AddForce(SetResistance(dragCoef));
+            } 
+
+
+
+
 
 
 
@@ -67,6 +77,11 @@ public class Walker1 : MonoBehaviour
             firstPosition.DrawVector(Color.blue);
             velocity.DrawVector(firstPosition, Color.red);
             Aceleration.DrawVector(firstPosition, Color.yellow);
+
+            fluidVector = new Vectors_01(fluid.transform.position.x, fluid.transform.position.y);
+            Vectors_01 fluidchange = new Vectors_01(fluidVector.compX, fluidVector.compY+5);
+            fluidchange.DrawVector(Color.white);
+            
 
             UpdatePosition();
             //CheckSpeed();
@@ -151,17 +166,25 @@ public class Walker1 : MonoBehaviour
         return new Vectors_01(0, gravForce);
     }
 
-    private Vectors_01 Friction(float _coef)
+    private Vectors_01 SetFriction(float _coef)
     {
         Vectors_01 frictionVector = -_coef * 4 * velocity.Normalize2();
         Debug.Log(frictionVector);
         return frictionVector;
+    }
+    private Vectors_01 SetResistance(float _dragCoef)
+    {
+        float module = velocity.Module();
+        float resistence = -.5f * 1f * Mathf.Pow(module, 2) * 1 * _dragCoef;
+        Vectors_01 resintenceVector = velocity.Normalize2().ScalarMultiply2(resistence);
+
+        return resintenceVector;
     }
     private void SetVectorInto(Vectors_01 a, Vector3 b)
     {
         a.compX = b.x;
         a.compY = b.y;
     }
-
+    
 
 }

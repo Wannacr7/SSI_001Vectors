@@ -165,18 +165,21 @@ MonoBehaviour:
     compY: 0
   Force:
     compX: 0
-    compY: -1
+    compY: 0
   Force2:
-    compX: 5.59
+    compX: 0
     compY: 0
   Forces:
     compX: 0
-    compY: 0
+    compY: -1
   target: {fileID: 1194234332}
   worldTarget: {fileID: 0}
   maxSpeed: 100
   ran: 0
   mass: 2
+  gravity: -9.8
+  coeFricction: 1
+  dragCoef: 0
   Automatic: 1
   noBorders: 0
 --- !u!96 &1194234334
@@ -496,22 +499,25 @@ MonoBehaviour:
     compX: 0
     compY: 0
   Aceleration:
-    compX: 0
+    compX: 1
     compY: 0
   Force:
     compX: 0
-    compY: -1
+    compY: 20
   Force2:
-    compX: 5.59
+    compX: 0
     compY: 0
   Forces:
     compX: 0
-    compY: 0
+    compY: -1
   target: {fileID: 1281739819}
   worldTarget: {fileID: 0}
   maxSpeed: 100
   ran: 0
-  mass: 20
+  mass: 5
+  gravity: -9.8
+  coeFricction: 1
+  dragCoef: 0
   Automatic: 1
   noBorders: 0
 --- !u!212 &1281739822
