@@ -173,7 +173,7 @@ public class Vectors_01
 
     public static implicit operator Vector3(Vectors_01 v)
     {
-        return new Vector2(v.compX, v.compY);
+        return new Vector3(v.compX, v.compY);
     }
     public static Vectors_01 operator +(Vectors_01 a, Vectors_01 b)
     {
